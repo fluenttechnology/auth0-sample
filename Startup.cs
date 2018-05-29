@@ -110,7 +110,7 @@ Console.WriteLine("Cookie auth is redirecting to login page");
                     options.Authority = $"https://{Configuration["Auth0:Domain"]}";
                     options.Audience = Configuration["Auth0:ApiIdentifier"];
                     options.Events.OnAuthenticationFailed = ctx => {
-                        Console.WriteLine(ctx.Exception);
+ Console.WriteLine(ctx.Exception);
                         throw ctx.Exception;
                     };
                 });
