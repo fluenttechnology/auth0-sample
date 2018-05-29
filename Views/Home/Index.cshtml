@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Home</h1>
+<p>If user is authenticated:</p>
+@if (User.Identity.IsAuthenticated) {
+
+    <h2>User: @User.Identity.Name!</h2>
+    <h3>E-mail address</h3>
+    @User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Email)?.Value
+    <h3>Picture</h3>
+    <img src="@User.Claims.FirstOrDefault(c => c.Type=="picture")?.Value" />
+
+    <h3>Other claims</h3>
+    @foreach(var claim in User.Claims){
+
+        <div>@claim</div>
+    }
+
+    <h3>Returned from API:</h3>
+    @ViewData["fromAPI"]
+
+}
